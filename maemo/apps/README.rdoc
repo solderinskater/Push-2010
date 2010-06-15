@@ -1,0 +1,8 @@
+= Maemo apps
+
+== ruby apps
+
+=== faker
+
+faker is ruby/dbus based app that generates fake sensor data and publishes them
+over the dbus.

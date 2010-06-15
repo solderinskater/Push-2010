@@ -1,0 +1,12 @@
+= USB test sensor
+
+Test sensor routing sensor data from serial device to dbus sensor.
+
+== Input
+
+/dev/ttyUSB0 115200
+
+== Output (DBUS)
+
+gyro and orientation object with multi dimensional (3, ?) signal data 
+output.

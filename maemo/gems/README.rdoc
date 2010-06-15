@@ -1,0 +1,39 @@
+= pushgems
+
+i will now explain how to include gems to ruby code running on the maemo.
+
+== usage
+
+put/link the "pushgems.rb" file somewhere that already is in the interpreter
+include path (like "." or "/usr/local/lib/site_ruby/1.8").
+
+now we can use it like rubygems:
+
+  require 'pushgems'
+  require 'myspecialgem'
+  
+qed.
+
+== ruby background
+
+as there is no version for rubygems on freemantle right now, we do the gem path
+including by hand. we'll do this in a rather low-level way, by simply doing:
+
+  $: << "/path/to/gem"
+  
+thereby manipulating the ruby include path variable.
+
+this is done automatically by requiring the "pushgems.rb" file. it basically
+looks like this:
+
+  #path of the gem directory on the maemo device
+  gempath = "/opt/pushitcode/pushitrealgood/maemo/gems"
+  #list of gems we want to include
+  gems = ["rofl","ruby-dbus","dbus-client"]
+  #now we add the gems to the interpreter include variable ($:)
+  gems.each do |gem|
+    $: << "#{gempath}/#{gem}/lib"
+  end
+  
+you might need to configure the "gempath" and "gems" variable to make it work
+you.

@@ -1,0 +1,14 @@
+= Faker
+
+Main purpose of this component is to supply the rest of the projects components
+with semi-plausible artificial sensor data until the board target architecture
+is up and running.
+
+== Input
+
+none
+
+== Output (DBUS)
+
+fake gyro and orientation object with multi dimensional (3, ?) signal data 
+output.

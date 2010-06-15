@@ -1,0 +1,30 @@
+= PUSHitREALgood
+
+Copyright 2010 Soldering Skaters (Alexander Lenhard, Stefanie Schirmer,
+Jan Anlauff, Erik Weitnauer, Sebastian Zehe, Florian Fusco, Lennart Wrede,
+Nick Thomas, Keywan Tonekaboni)
+
+All code is under the GLPv3.
+
+This is the code developed for the Nokia Push 2010 Event. Here is our website and some photos::
+http://prometoys.net/solderinskater/
+http://www.flickr.com/search/?q=solderinskater&w=all
+
+== Structure
+
+=== docs		
+
+documentation/rdoc
+
+=== board 	
+
+- code running on the arduino
+- hardware specifications
+
+=== maemo		
+
+code running on maemo (the n900)
+
+=== lab			
+
+code sketches and tools

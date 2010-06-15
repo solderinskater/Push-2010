@@ -1,0 +1,17 @@
+= DBus client
+
+Just a simple dbus client lib written in ruby
+
+== Installation
+
+  sudo gem install pangdudu-dbus-client --source=http://gems.github.com
+  
+== Usage
+
+  require 'rubygems'
+  require 'dbus_client'
+  include DBusClient
+
+== License
+
+GPL -> http://www.gnu.org/licenses/gpl.txt

@@ -1,0 +1,12 @@
+= Annotator
+
+This component mainly consist of a qt gui that is used to view, record and 
+annotate incoming or pre-recorded sensor data.
+
+== Input (DBus)
+
+Sensor data from dbus sensor service.
+
+== Output
+
+Annotated sensor data patterns.

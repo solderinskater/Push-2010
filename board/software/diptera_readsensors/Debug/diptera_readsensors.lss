@@ -1,0 +1,1446 @@
+
+diptera_readsensors.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000008d6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          00000090  00800100  000008d6  0000094a  2**0
+                  ALLOC
+  2 .stab         000015c0  00000000  00000000  0000094c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000d49  00000000  00000000  00001f0c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 50 00 	jmp	0xa0	; 0xa0 <__ctors_end>
+   4:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+   8:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+   c:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  10:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  14:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  18:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  1c:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  20:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  24:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  28:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  2c:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  30:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  34:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  38:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  3c:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  40:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  44:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  48:	0c 94 3c 03 	jmp	0x678	; 0x678 <__vector_18>
+  4c:	0c 94 d3 03 	jmp	0x7a6	; 0x7a6 <__vector_19>
+  50:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  54:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  58:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  5c:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  60:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+  64:	0c 94 6d 00 	jmp	0xda	; 0xda <__bad_interrupt>
+
+00000068 <port_to_mode_PGM>:
+  68:	00 00 24 27 2a                                      ..$'*
+
+0000006d <port_to_output_PGM>:
+  6d:	00 00 25 28 2b                                      ..%(+
+
+00000072 <port_to_input_PGM>:
+  72:	00 00 23 26 29                                      ..#&)
+
+00000077 <digital_pin_to_port_PGM>:
+  77:	04 04 04 04 04 04 04 04 02 02 02 02 02 02 03 03     ................
+  87:	03 03 03 03                                         ....
+
+0000008b <digital_pin_to_bit_mask_PGM>:
+  8b:	01 02 04 08 10 20 40 80 01 02 04 08 10 20 01 02     ..... @...... ..
+  9b:	04 08 10 20 00                                      ... .
+
+000000a0 <__ctors_end>:
+  a0:	11 24       	eor	r1, r1
+  a2:	1f be       	out	0x3f, r1	; 63
+  a4:	cf ef       	ldi	r28, 0xFF	; 255
+  a6:	d4 e0       	ldi	r29, 0x04	; 4
+  a8:	de bf       	out	0x3e, r29	; 62
+  aa:	cd bf       	out	0x3d, r28	; 61
+
+000000ac <__do_copy_data>:
+  ac:	11 e0       	ldi	r17, 0x01	; 1
+  ae:	a0 e0       	ldi	r26, 0x00	; 0
+  b0:	b1 e0       	ldi	r27, 0x01	; 1
+  b2:	e6 ed       	ldi	r30, 0xD6	; 214
+  b4:	f8 e0       	ldi	r31, 0x08	; 8
+  b6:	02 c0       	rjmp	.+4      	; 0xbc <.do_copy_data_start>
+
+000000b8 <.do_copy_data_loop>:
+  b8:	05 90       	lpm	r0, Z+
+  ba:	0d 92       	st	X+, r0
+
+000000bc <.do_copy_data_start>:
+  bc:	a0 30       	cpi	r26, 0x00	; 0
+  be:	b1 07       	cpc	r27, r17
+  c0:	d9 f7       	brne	.-10     	; 0xb8 <.do_copy_data_loop>
+
+000000c2 <__do_clear_bss>:
+  c2:	11 e0       	ldi	r17, 0x01	; 1
+  c4:	a0 e0       	ldi	r26, 0x00	; 0
+  c6:	b1 e0       	ldi	r27, 0x01	; 1
+  c8:	01 c0       	rjmp	.+2      	; 0xcc <.do_clear_bss_start>
+
+000000ca <.do_clear_bss_loop>:
+  ca:	1d 92       	st	X+, r1
+
+000000cc <.do_clear_bss_start>:
+  cc:	a0 39       	cpi	r26, 0x90	; 144
+  ce:	b1 07       	cpc	r27, r17
+  d0:	e1 f7       	brne	.-8      	; 0xca <.do_clear_bss_loop>
+  d2:	0e 94 cf 02 	call	0x59e	; 0x59e <main>
+  d6:	0c 94 6a 04 	jmp	0x8d4	; 0x8d4 <_exit>
+
+000000da <__bad_interrupt>:
+  da:	0c 94 00 00 	jmp	0	; 0x0 <__heap_end>
+
+000000de <fifo_init>:
+ * from: http://www.rn-wissen.de/index.php/FIFO_mit_avr-gcc
+ */
+
+#include "includes/fifo.h"
+
+void fifo_init (fifo_t *f, uint8_t *buffer, const uint8_t size) {
+  de:	cf 93       	push	r28
+  e0:	df 93       	push	r29
+  e2:	cd b7       	in	r28, 0x3d	; 61
+  e4:	de b7       	in	r29, 0x3e	; 62
+  e6:	25 97       	sbiw	r28, 0x05	; 5
+  e8:	0f b6       	in	r0, 0x3f	; 63
+  ea:	f8 94       	cli
+  ec:	de bf       	out	0x3e, r29	; 62
+  ee:	0f be       	out	0x3f, r0	; 63
+  f0:	cd bf       	out	0x3d, r28	; 61
+  f2:	9a 83       	std	Y+2, r25	; 0x02
+  f4:	89 83       	std	Y+1, r24	; 0x01
+  f6:	7c 83       	std	Y+4, r23	; 0x04
+  f8:	6b 83       	std	Y+3, r22	; 0x03
+  fa:	4d 83       	std	Y+5, r20	; 0x05
+	f->count = 0;
+  fc:	e9 81       	ldd	r30, Y+1	; 0x01
+  fe:	fa 81       	ldd	r31, Y+2	; 0x02
+ 100:	10 82       	st	Z, r1
+	f->pread = f->pwrite = buffer;
+ 102:	e9 81       	ldd	r30, Y+1	; 0x01
+ 104:	fa 81       	ldd	r31, Y+2	; 0x02
+ 106:	8b 81       	ldd	r24, Y+3	; 0x03
+ 108:	9c 81       	ldd	r25, Y+4	; 0x04
+ 10a:	95 83       	std	Z+5, r25	; 0x05
+ 10c:	84 83       	std	Z+4, r24	; 0x04
+ 10e:	e9 81       	ldd	r30, Y+1	; 0x01
+ 110:	fa 81       	ldd	r31, Y+2	; 0x02
+ 112:	84 81       	ldd	r24, Z+4	; 0x04
+ 114:	95 81       	ldd	r25, Z+5	; 0x05
+ 116:	e9 81       	ldd	r30, Y+1	; 0x01
+ 118:	fa 81       	ldd	r31, Y+2	; 0x02
+ 11a:	93 83       	std	Z+3, r25	; 0x03
+ 11c:	82 83       	std	Z+2, r24	; 0x02
+	f->read2end = f->write2end = f->size = size;
+ 11e:	e9 81       	ldd	r30, Y+1	; 0x01
+ 120:	fa 81       	ldd	r31, Y+2	; 0x02
+ 122:	8d 81       	ldd	r24, Y+5	; 0x05
+ 124:	81 83       	std	Z+1, r24	; 0x01
+ 126:	e9 81       	ldd	r30, Y+1	; 0x01
+ 128:	fa 81       	ldd	r31, Y+2	; 0x02
+ 12a:	81 81       	ldd	r24, Z+1	; 0x01
+ 12c:	e9 81       	ldd	r30, Y+1	; 0x01
+ 12e:	fa 81       	ldd	r31, Y+2	; 0x02
+ 130:	87 83       	std	Z+7, r24	; 0x07
+ 132:	e9 81       	ldd	r30, Y+1	; 0x01
+ 134:	fa 81       	ldd	r31, Y+2	; 0x02
+ 136:	87 81       	ldd	r24, Z+7	; 0x07
+ 138:	e9 81       	ldd	r30, Y+1	; 0x01
+ 13a:	fa 81       	ldd	r31, Y+2	; 0x02
+ 13c:	86 83       	std	Z+6, r24	; 0x06
+ 13e:	25 96       	adiw	r28, 0x05	; 5
+ 140:	0f b6       	in	r0, 0x3f	; 63
+ 142:	f8 94       	cli
+ 144:	de bf       	out	0x3e, r29	; 62
+ 146:	0f be       	out	0x3f, r0	; 63
+ 148:	cd bf       	out	0x3d, r28	; 61
+ 14a:	df 91       	pop	r29
+ 14c:	cf 91       	pop	r28
+ 14e:	08 95       	ret
+
+00000150 <fifo_put>:
+}
+
+uint8_t fifo_put (fifo_t *f, const uint8_t data) {
+ 150:	cf 93       	push	r28
+ 152:	df 93       	push	r29
+ 154:	cd b7       	in	r28, 0x3d	; 61
+ 156:	de b7       	in	r29, 0x3e	; 62
+ 158:	23 97       	sbiw	r28, 0x03	; 3
+ 15a:	0f b6       	in	r0, 0x3f	; 63
+ 15c:	f8 94       	cli
+ 15e:	de bf       	out	0x3e, r29	; 62
+ 160:	0f be       	out	0x3f, r0	; 63
+ 162:	cd bf       	out	0x3d, r28	; 61
+ 164:	9a 83       	std	Y+2, r25	; 0x02
+ 166:	89 83       	std	Y+1, r24	; 0x01
+ 168:	6b 83       	std	Y+3, r22	; 0x03
+	return _inline_fifo_put (f, data);
+ 16a:	89 81       	ldd	r24, Y+1	; 0x01
+ 16c:	9a 81       	ldd	r25, Y+2	; 0x02
+ 16e:	6b 81       	ldd	r22, Y+3	; 0x03
+ 170:	0e 94 c4 00 	call	0x188	; 0x188 <_inline_fifo_put>
+ 174:	99 27       	eor	r25, r25
+ 176:	23 96       	adiw	r28, 0x03	; 3
+ 178:	0f b6       	in	r0, 0x3f	; 63
+ 17a:	f8 94       	cli
+ 17c:	de bf       	out	0x3e, r29	; 62
+ 17e:	0f be       	out	0x3f, r0	; 63
+ 180:	cd bf       	out	0x3d, r28	; 61
+ 182:	df 91       	pop	r29
+ 184:	cf 91       	pop	r28
+ 186:	08 95       	ret
+
+00000188 <_inline_fifo_put>:
+extern void fifo_init (fifo_t*, uint8_t* buf, const uint8_t size);
+extern uint8_t fifo_put (fifo_t*, const uint8_t data);
+extern uint8_t fifo_get_wait (fifo_t*);
+extern int fifo_get_nowait (fifo_t*);
+
+static inline uint8_t _inline_fifo_put (fifo_t *f, const uint8_t data) {
+ 188:	cf 93       	push	r28
+ 18a:	df 93       	push	r29
+ 18c:	cd b7       	in	r28, 0x3d	; 61
+ 18e:	de b7       	in	r29, 0x3e	; 62
+ 190:	29 97       	sbiw	r28, 0x09	; 9
+ 192:	0f b6       	in	r0, 0x3f	; 63
+ 194:	f8 94       	cli
+ 196:	de bf       	out	0x3e, r29	; 62
+ 198:	0f be       	out	0x3f, r0	; 63
+ 19a:	cd bf       	out	0x3d, r28	; 61
+ 19c:	9e 83       	std	Y+6, r25	; 0x06
+ 19e:	8d 83       	std	Y+5, r24	; 0x05
+ 1a0:	6f 83       	std	Y+7, r22	; 0x07
+	if (f->count >= f->size)
+ 1a2:	ed 81       	ldd	r30, Y+5	; 0x05
+ 1a4:	fe 81       	ldd	r31, Y+6	; 0x06
+ 1a6:	90 81       	ld	r25, Z
+ 1a8:	ed 81       	ldd	r30, Y+5	; 0x05
+ 1aa:	fe 81       	ldd	r31, Y+6	; 0x06
+ 1ac:	81 81       	ldd	r24, Z+1	; 0x01
+ 1ae:	98 17       	cp	r25, r24
+ 1b0:	18 f0       	brcs	.+6      	; 0x1b8 <_inline_fifo_put+0x30>
+		return 0;
+ 1b2:	19 86       	std	Y+9, r1	; 0x09
+ 1b4:	18 86       	std	Y+8, r1	; 0x08
+ 1b6:	44 c0       	rjmp	.+136    	; 0x240 <_inline_fifo_put+0xb8>
+
+	uint8_t * pwrite = f->pwrite;
+ 1b8:	ed 81       	ldd	r30, Y+5	; 0x05
+ 1ba:	fe 81       	ldd	r31, Y+6	; 0x06
+ 1bc:	84 81       	ldd	r24, Z+4	; 0x04
+ 1be:	95 81       	ldd	r25, Z+5	; 0x05
+ 1c0:	9c 83       	std	Y+4, r25	; 0x04
+ 1c2:	8b 83       	std	Y+3, r24	; 0x03
+
+	*(pwrite++) = data;
+ 1c4:	eb 81       	ldd	r30, Y+3	; 0x03
+ 1c6:	fc 81       	ldd	r31, Y+4	; 0x04
+ 1c8:	8f 81       	ldd	r24, Y+7	; 0x07
+ 1ca:	80 83       	st	Z, r24
+ 1cc:	8b 81       	ldd	r24, Y+3	; 0x03
+ 1ce:	9c 81       	ldd	r25, Y+4	; 0x04
+ 1d0:	01 96       	adiw	r24, 0x01	; 1
+ 1d2:	9c 83       	std	Y+4, r25	; 0x04
+ 1d4:	8b 83       	std	Y+3, r24	; 0x03
+
+	uint8_t write2end = f->write2end;
+ 1d6:	ed 81       	ldd	r30, Y+5	; 0x05
+ 1d8:	fe 81       	ldd	r31, Y+6	; 0x06
+ 1da:	87 81       	ldd	r24, Z+7	; 0x07
+ 1dc:	8a 83       	std	Y+2, r24	; 0x02
+
+	if (--write2end == 0)
+ 1de:	8a 81       	ldd	r24, Y+2	; 0x02
+ 1e0:	81 50       	subi	r24, 0x01	; 1
+ 1e2:	8a 83       	std	Y+2, r24	; 0x02
+ 1e4:	8a 81       	ldd	r24, Y+2	; 0x02
+ 1e6:	88 23       	and	r24, r24
+ 1e8:	69 f4       	brne	.+26     	; 0x204 <_inline_fifo_put+0x7c>
+	{
+		write2end = f->size;
+ 1ea:	ed 81       	ldd	r30, Y+5	; 0x05
+ 1ec:	fe 81       	ldd	r31, Y+6	; 0x06
+ 1ee:	81 81       	ldd	r24, Z+1	; 0x01
+ 1f0:	8a 83       	std	Y+2, r24	; 0x02
+		pwrite -= write2end;
+ 1f2:	8a 81       	ldd	r24, Y+2	; 0x02
+ 1f4:	99 27       	eor	r25, r25
+ 1f6:	9c 01       	movw	r18, r24
+ 1f8:	8b 81       	ldd	r24, Y+3	; 0x03
+ 1fa:	9c 81       	ldd	r25, Y+4	; 0x04
+ 1fc:	82 1b       	sub	r24, r18
+ 1fe:	93 0b       	sbc	r25, r19
+ 200:	9c 83       	std	Y+4, r25	; 0x04
+ 202:	8b 83       	std	Y+3, r24	; 0x03
+	}
+
+	f->write2end = write2end;
+ 204:	ed 81       	ldd	r30, Y+5	; 0x05
+ 206:	fe 81       	ldd	r31, Y+6	; 0x06
+ 208:	8a 81       	ldd	r24, Y+2	; 0x02
+ 20a:	87 83       	std	Z+7, r24	; 0x07
+	f->pwrite = pwrite;
+ 20c:	ed 81       	ldd	r30, Y+5	; 0x05
+ 20e:	fe 81       	ldd	r31, Y+6	; 0x06
+ 210:	8b 81       	ldd	r24, Y+3	; 0x03
+ 212:	9c 81       	ldd	r25, Y+4	; 0x04
+ 214:	95 83       	std	Z+5, r25	; 0x05
+ 216:	84 83       	std	Z+4, r24	; 0x04
+
+	uint8_t sreg = SREG;
+ 218:	ef e5       	ldi	r30, 0x5F	; 95
+ 21a:	f0 e0       	ldi	r31, 0x00	; 0
+ 21c:	80 81       	ld	r24, Z
+ 21e:	89 83       	std	Y+1, r24	; 0x01
+	cli();
+ 220:	f8 94       	cli
+	f->count++;
+ 222:	ed 81       	ldd	r30, Y+5	; 0x05
+ 224:	fe 81       	ldd	r31, Y+6	; 0x06
+ 226:	80 81       	ld	r24, Z
+ 228:	8f 5f       	subi	r24, 0xFF	; 255
+ 22a:	ed 81       	ldd	r30, Y+5	; 0x05
+ 22c:	fe 81       	ldd	r31, Y+6	; 0x06
+ 22e:	80 83       	st	Z, r24
+	SREG = sreg;
+ 230:	ef e5       	ldi	r30, 0x5F	; 95
+ 232:	f0 e0       	ldi	r31, 0x00	; 0
+ 234:	89 81       	ldd	r24, Y+1	; 0x01
+ 236:	80 83       	st	Z, r24
+
+	return 1;
+ 238:	81 e0       	ldi	r24, 0x01	; 1
+ 23a:	90 e0       	ldi	r25, 0x00	; 0
+ 23c:	99 87       	std	Y+9, r25	; 0x09
+ 23e:	88 87       	std	Y+8, r24	; 0x08
+ 240:	88 85       	ldd	r24, Y+8	; 0x08
+ 242:	99 85       	ldd	r25, Y+9	; 0x09
+ 244:	29 96       	adiw	r28, 0x09	; 9
+ 246:	0f b6       	in	r0, 0x3f	; 63
+ 248:	f8 94       	cli
+ 24a:	de bf       	out	0x3e, r29	; 62
+ 24c:	0f be       	out	0x3f, r0	; 63
+ 24e:	cd bf       	out	0x3d, r28	; 61
+ 250:	df 91       	pop	r29
+ 252:	cf 91       	pop	r28
+ 254:	08 95       	ret
+
+00000256 <fifo_get_wait>:
+}
+
+uint8_t fifo_get_wait (fifo_t *f) {
+ 256:	cf 93       	push	r28
+ 258:	df 93       	push	r29
+ 25a:	cd b7       	in	r28, 0x3d	; 61
+ 25c:	de b7       	in	r29, 0x3e	; 62
+ 25e:	22 97       	sbiw	r28, 0x02	; 2
+ 260:	0f b6       	in	r0, 0x3f	; 63
+ 262:	f8 94       	cli
+ 264:	de bf       	out	0x3e, r29	; 62
+ 266:	0f be       	out	0x3f, r0	; 63
+ 268:	cd bf       	out	0x3d, r28	; 61
+ 26a:	9a 83       	std	Y+2, r25	; 0x02
+ 26c:	89 83       	std	Y+1, r24	; 0x01
+	while (!f->count);
+ 26e:	e9 81       	ldd	r30, Y+1	; 0x01
+ 270:	fa 81       	ldd	r31, Y+2	; 0x02
+ 272:	80 81       	ld	r24, Z
+ 274:	88 23       	and	r24, r24
+ 276:	d9 f3       	breq	.-10     	; 0x26e <fifo_get_wait+0x18>
+
+	return _inline_fifo_get (f);
+ 278:	89 81       	ldd	r24, Y+1	; 0x01
+ 27a:	9a 81       	ldd	r25, Y+2	; 0x02
+ 27c:	0e 94 4a 01 	call	0x294	; 0x294 <_inline_fifo_get>
+ 280:	99 27       	eor	r25, r25
+ 282:	22 96       	adiw	r28, 0x02	; 2
+ 284:	0f b6       	in	r0, 0x3f	; 63
+ 286:	f8 94       	cli
+ 288:	de bf       	out	0x3e, r29	; 62
+ 28a:	0f be       	out	0x3f, r0	; 63
+ 28c:	cd bf       	out	0x3d, r28	; 61
+ 28e:	df 91       	pop	r29
+ 290:	cf 91       	pop	r28
+ 292:	08 95       	ret
+
+00000294 <_inline_fifo_get>:
+}
+
+static inline uint8_t _inline_fifo_get (fifo_t *f) {
+ 294:	cf 93       	push	r28
+ 296:	df 93       	push	r29
+ 298:	cd b7       	in	r28, 0x3d	; 61
+ 29a:	de b7       	in	r29, 0x3e	; 62
+ 29c:	27 97       	sbiw	r28, 0x07	; 7
+ 29e:	0f b6       	in	r0, 0x3f	; 63
+ 2a0:	f8 94       	cli
+ 2a2:	de bf       	out	0x3e, r29	; 62
+ 2a4:	0f be       	out	0x3f, r0	; 63
+ 2a6:	cd bf       	out	0x3d, r28	; 61
+ 2a8:	9f 83       	std	Y+7, r25	; 0x07
+ 2aa:	8e 83       	std	Y+6, r24	; 0x06
+	uint8_t *pread = f->pread;
+ 2ac:	ee 81       	ldd	r30, Y+6	; 0x06
+ 2ae:	ff 81       	ldd	r31, Y+7	; 0x07
+ 2b0:	82 81       	ldd	r24, Z+2	; 0x02
+ 2b2:	93 81       	ldd	r25, Z+3	; 0x03
+ 2b4:	9d 83       	std	Y+5, r25	; 0x05
+ 2b6:	8c 83       	std	Y+4, r24	; 0x04
+	uint8_t data = *(pread++);
+ 2b8:	ec 81       	ldd	r30, Y+4	; 0x04
+ 2ba:	fd 81       	ldd	r31, Y+5	; 0x05
+ 2bc:	80 81       	ld	r24, Z
+ 2be:	8b 83       	std	Y+3, r24	; 0x03
+ 2c0:	8c 81       	ldd	r24, Y+4	; 0x04
+ 2c2:	9d 81       	ldd	r25, Y+5	; 0x05
+ 2c4:	01 96       	adiw	r24, 0x01	; 1
+ 2c6:	9d 83       	std	Y+5, r25	; 0x05
+ 2c8:	8c 83       	std	Y+4, r24	; 0x04
+	uint8_t read2end = f->read2end;
+ 2ca:	ee 81       	ldd	r30, Y+6	; 0x06
+ 2cc:	ff 81       	ldd	r31, Y+7	; 0x07
+ 2ce:	86 81       	ldd	r24, Z+6	; 0x06
+ 2d0:	8a 83       	std	Y+2, r24	; 0x02
+
+	if (--read2end == 0)
+ 2d2:	8a 81       	ldd	r24, Y+2	; 0x02
+ 2d4:	81 50       	subi	r24, 0x01	; 1
+ 2d6:	8a 83       	std	Y+2, r24	; 0x02
+ 2d8:	8a 81       	ldd	r24, Y+2	; 0x02
+ 2da:	88 23       	and	r24, r24
+ 2dc:	69 f4       	brne	.+26     	; 0x2f8 <_inline_fifo_get+0x64>
+	{
+		read2end = f->size;
+ 2de:	ee 81       	ldd	r30, Y+6	; 0x06
+ 2e0:	ff 81       	ldd	r31, Y+7	; 0x07
+ 2e2:	81 81       	ldd	r24, Z+1	; 0x01
+ 2e4:	8a 83       	std	Y+2, r24	; 0x02
+		pread -= read2end;
+ 2e6:	8a 81       	ldd	r24, Y+2	; 0x02
+ 2e8:	99 27       	eor	r25, r25
+ 2ea:	9c 01       	movw	r18, r24
+ 2ec:	8c 81       	ldd	r24, Y+4	; 0x04
+ 2ee:	9d 81       	ldd	r25, Y+5	; 0x05
+ 2f0:	82 1b       	sub	r24, r18
+ 2f2:	93 0b       	sbc	r25, r19
+ 2f4:	9d 83       	std	Y+5, r25	; 0x05
+ 2f6:	8c 83       	std	Y+4, r24	; 0x04
+	}
+
+	f->pread = pread;
+ 2f8:	ee 81       	ldd	r30, Y+6	; 0x06
+ 2fa:	ff 81       	ldd	r31, Y+7	; 0x07
+ 2fc:	8c 81       	ldd	r24, Y+4	; 0x04
+ 2fe:	9d 81       	ldd	r25, Y+5	; 0x05
+ 300:	93 83       	std	Z+3, r25	; 0x03
+ 302:	82 83       	std	Z+2, r24	; 0x02
+	f->read2end = read2end;
+ 304:	ee 81       	ldd	r30, Y+6	; 0x06
+ 306:	ff 81       	ldd	r31, Y+7	; 0x07
+ 308:	8a 81       	ldd	r24, Y+2	; 0x02
+ 30a:	86 83       	std	Z+6, r24	; 0x06
+
+	uint8_t sreg = SREG;
+ 30c:	ef e5       	ldi	r30, 0x5F	; 95
+ 30e:	f0 e0       	ldi	r31, 0x00	; 0
+ 310:	80 81       	ld	r24, Z
+ 312:	89 83       	std	Y+1, r24	; 0x01
+	cli();
+ 314:	f8 94       	cli
+	f->count--;
+ 316:	ee 81       	ldd	r30, Y+6	; 0x06
+ 318:	ff 81       	ldd	r31, Y+7	; 0x07
+ 31a:	80 81       	ld	r24, Z
+ 31c:	81 50       	subi	r24, 0x01	; 1
+ 31e:	ee 81       	ldd	r30, Y+6	; 0x06
+ 320:	ff 81       	ldd	r31, Y+7	; 0x07
+ 322:	80 83       	st	Z, r24
+	SREG = sreg;
+ 324:	ef e5       	ldi	r30, 0x5F	; 95
+ 326:	f0 e0       	ldi	r31, 0x00	; 0
+ 328:	89 81       	ldd	r24, Y+1	; 0x01
+ 32a:	80 83       	st	Z, r24
+
+	return data;
+ 32c:	8b 81       	ldd	r24, Y+3	; 0x03
+ 32e:	99 27       	eor	r25, r25
+ 330:	27 96       	adiw	r28, 0x07	; 7
+ 332:	0f b6       	in	r0, 0x3f	; 63
+ 334:	f8 94       	cli
+ 336:	de bf       	out	0x3e, r29	; 62
+ 338:	0f be       	out	0x3f, r0	; 63
+ 33a:	cd bf       	out	0x3d, r28	; 61
+ 33c:	df 91       	pop	r29
+ 33e:	cf 91       	pop	r28
+ 340:	08 95       	ret
+
+00000342 <fifo_get_nowait>:
+}
+
+int fifo_get_nowait (fifo_t *f) {
+ 342:	cf 93       	push	r28
+ 344:	df 93       	push	r29
+ 346:	cd b7       	in	r28, 0x3d	; 61
+ 348:	de b7       	in	r29, 0x3e	; 62
+ 34a:	24 97       	sbiw	r28, 0x04	; 4
+ 34c:	0f b6       	in	r0, 0x3f	; 63
+ 34e:	f8 94       	cli
+ 350:	de bf       	out	0x3e, r29	; 62
+ 352:	0f be       	out	0x3f, r0	; 63
+ 354:	cd bf       	out	0x3d, r28	; 61
+ 356:	9a 83       	std	Y+2, r25	; 0x02
+ 358:	89 83       	std	Y+1, r24	; 0x01
+	if (!f->count)		return -1;
+ 35a:	e9 81       	ldd	r30, Y+1	; 0x01
+ 35c:	fa 81       	ldd	r31, Y+2	; 0x02
+ 35e:	80 81       	ld	r24, Z
+ 360:	88 23       	and	r24, r24
+ 362:	29 f4       	brne	.+10     	; 0x36e <fifo_get_nowait+0x2c>
+ 364:	2f ef       	ldi	r18, 0xFF	; 255
+ 366:	3f ef       	ldi	r19, 0xFF	; 255
+ 368:	3c 83       	std	Y+4, r19	; 0x04
+ 36a:	2b 83       	std	Y+3, r18	; 0x03
+ 36c:	08 c0       	rjmp	.+16     	; 0x37e <fifo_get_nowait+0x3c>
+
+	return (int) _inline_fifo_get (f);
+ 36e:	89 81       	ldd	r24, Y+1	; 0x01
+ 370:	9a 81       	ldd	r25, Y+2	; 0x02
+ 372:	0e 94 4a 01 	call	0x294	; 0x294 <_inline_fifo_get>
+ 376:	28 2f       	mov	r18, r24
+ 378:	33 27       	eor	r19, r19
+ 37a:	3c 83       	std	Y+4, r19	; 0x04
+ 37c:	2b 83       	std	Y+3, r18	; 0x03
+ 37e:	8b 81       	ldd	r24, Y+3	; 0x03
+ 380:	9c 81       	ldd	r25, Y+4	; 0x04
+ 382:	24 96       	adiw	r28, 0x04	; 4
+ 384:	0f b6       	in	r0, 0x3f	; 63
+ 386:	f8 94       	cli
+ 388:	de bf       	out	0x3e, r29	; 62
+ 38a:	0f be       	out	0x3f, r0	; 63
+ 38c:	cd bf       	out	0x3d, r28	; 61
+ 38e:	df 91       	pop	r29
+ 390:	cf 91       	pop	r28
+ 392:	08 95       	ret
+
+00000394 <led_init>:
+ * io.c
+ */
+
+#include "includes/io.h"
+
+void led_init(void) {
+ 394:	cf 93       	push	r28
+ 396:	df 93       	push	r29
+ 398:	cd b7       	in	r28, 0x3d	; 61
+ 39a:	de b7       	in	r29, 0x3e	; 62
+	LED_PORT_REGISTER = _BV(LED_PIN);
+ 39c:	e4 e2       	ldi	r30, 0x24	; 36
+ 39e:	f0 e0       	ldi	r31, 0x00	; 0
+ 3a0:	84 e0       	ldi	r24, 0x04	; 4
+ 3a2:	80 83       	st	Z, r24
+ 3a4:	df 91       	pop	r29
+ 3a6:	cf 91       	pop	r28
+ 3a8:	08 95       	ret
+
+000003aa <led_on>:
+}
+
+void led_on(void) {
+ 3aa:	cf 93       	push	r28
+ 3ac:	df 93       	push	r29
+ 3ae:	cd b7       	in	r28, 0x3d	; 61
+ 3b0:	de b7       	in	r29, 0x3e	; 62
+	LED_PORT |= _BV(LED_PIN);
+ 3b2:	a5 e2       	ldi	r26, 0x25	; 37
+ 3b4:	b0 e0       	ldi	r27, 0x00	; 0
+ 3b6:	e5 e2       	ldi	r30, 0x25	; 37
+ 3b8:	f0 e0       	ldi	r31, 0x00	; 0
+ 3ba:	80 81       	ld	r24, Z
+ 3bc:	84 60       	ori	r24, 0x04	; 4
+ 3be:	8c 93       	st	X, r24
+ 3c0:	df 91       	pop	r29
+ 3c2:	cf 91       	pop	r28
+ 3c4:	08 95       	ret
+
+000003c6 <led_off>:
+}
+
+void led_off(void) {
+ 3c6:	cf 93       	push	r28
+ 3c8:	df 93       	push	r29
+ 3ca:	cd b7       	in	r28, 0x3d	; 61
+ 3cc:	de b7       	in	r29, 0x3e	; 62
+	LED_PORT &= ~_BV(LED_PIN);
+ 3ce:	a5 e2       	ldi	r26, 0x25	; 37
+ 3d0:	b0 e0       	ldi	r27, 0x00	; 0
+ 3d2:	e5 e2       	ldi	r30, 0x25	; 37
+ 3d4:	f0 e0       	ldi	r31, 0x00	; 0
+ 3d6:	80 81       	ld	r24, Z
+ 3d8:	8b 7f       	andi	r24, 0xFB	; 251
+ 3da:	8c 93       	st	X, r24
+ 3dc:	df 91       	pop	r29
+ 3de:	cf 91       	pop	r28
+ 3e0:	08 95       	ret
+
+000003e2 <led_toggle>:
+}
+
+void led_toggle() {
+ 3e2:	cf 93       	push	r28
+ 3e4:	df 93       	push	r29
+ 3e6:	cd b7       	in	r28, 0x3d	; 61
+ 3e8:	de b7       	in	r29, 0x3e	; 62
+	if (bit_is_set(LED_PORT, LED_PIN)) {
+ 3ea:	e5 e2       	ldi	r30, 0x25	; 37
+ 3ec:	f0 e0       	ldi	r31, 0x00	; 0
+ 3ee:	80 81       	ld	r24, Z
+ 3f0:	99 27       	eor	r25, r25
+ 3f2:	84 70       	andi	r24, 0x04	; 4
+ 3f4:	90 70       	andi	r25, 0x00	; 0
+ 3f6:	00 97       	sbiw	r24, 0x00	; 0
+ 3f8:	19 f0       	breq	.+6      	; 0x400 <led_toggle+0x1e>
+		led_off();
+ 3fa:	0e 94 e3 01 	call	0x3c6	; 0x3c6 <led_off>
+ 3fe:	02 c0       	rjmp	.+4      	; 0x404 <led_toggle+0x22>
+	} else {
+		led_on();
+ 400:	0e 94 d5 01 	call	0x3aa	; 0x3aa <led_on>
+ 404:	df 91       	pop	r29
+ 406:	cf 91       	pop	r28
+ 408:	08 95       	ret
+
+0000040a <adc_init>:
+	}
+}
+
+void adc_init() {
+ 40a:	cf 93       	push	r28
+ 40c:	df 93       	push	r29
+ 40e:	cd b7       	in	r28, 0x3d	; 61
+ 410:	de b7       	in	r29, 0x3e	; 62
+	/* internal pull-ups interfere with the ADC so disable them
+	 * p260: Note that ADC pins ADC7 and ADC6 do not have digital input
+	 * buffers, and therefore do not require Digital Input Disable bits.
+	 */
+	ADC_PORT = 0x00;
+ 412:	e8 e2       	ldi	r30, 0x28	; 40
+ 414:	f0 e0       	ldi	r31, 0x00	; 0
+ 416:	10 82       	st	Z, r1
+	ADC_PORT_REGISTER = 0x00;
+ 418:	e7 e2       	ldi	r30, 0x27	; 39
+ 41a:	f0 e0       	ldi	r31, 0x00	; 0
+ 41c:	10 82       	st	Z, r1
+
+	/* unless otherwise configured, arduinos use the internal Vcc
+	 * reference. MUX 0x0f samples the ground (0.0V). */
+	ADMUX = _BV(REFS0) | 0x0f;
+ 41e:	ec e7       	ldi	r30, 0x7C	; 124
+ 420:	f0 e0       	ldi	r31, 0x00	; 0
+ 422:	8f e4       	ldi	r24, 0x4F	; 79
+ 424:	80 83       	st	Z, r24
+	 * Enable the ADC system, use 128 as the clock divider on a 16MHz
+	 * arduino (ADC needs a 50 - 200kHz clock) and start a sample. the
+	 * AVR needs to do some set-up the first time the ADC is used; this
+	 * first, discarded, sample primes the system for later use.
+	 */
+	ADCSRA |= _BV(ADEN) | _BV(ADPS2) | _BV(ADPS1) | _BV(ADPS0) | _BV(ADSC);
+ 426:	aa e7       	ldi	r26, 0x7A	; 122
+ 428:	b0 e0       	ldi	r27, 0x00	; 0
+ 42a:	ea e7       	ldi	r30, 0x7A	; 122
+ 42c:	f0 e0       	ldi	r31, 0x00	; 0
+ 42e:	80 81       	ld	r24, Z
+ 430:	87 6c       	ori	r24, 0xC7	; 199
+ 432:	8c 93       	st	X, r24
+	// wait for the ADC to return a sample
+	loop_until_bit_is_clear(ADCSRA, ADSC);
+ 434:	ea e7       	ldi	r30, 0x7A	; 122
+ 436:	f0 e0       	ldi	r31, 0x00	; 0
+ 438:	80 81       	ld	r24, Z
+ 43a:	99 27       	eor	r25, r25
+ 43c:	80 74       	andi	r24, 0x40	; 64
+ 43e:	90 70       	andi	r25, 0x00	; 0
+ 440:	00 97       	sbiw	r24, 0x00	; 0
+ 442:	c1 f7       	brne	.-16     	; 0x434 <adc_init+0x2a>
+ 444:	df 91       	pop	r29
+ 446:	cf 91       	pop	r28
+ 448:	08 95       	ret
+
+0000044a <adc_read>:
+//	h = ADCH;
+//
+//	return ((unsigned short)h << 8) | l;
+//}
+
+uint16_t adc_read(uint8_t pin) {
+ 44a:	cf 93       	push	r28
+ 44c:	df 93       	push	r29
+ 44e:	cd b7       	in	r28, 0x3d	; 61
+ 450:	de b7       	in	r29, 0x3e	; 62
+ 452:	24 97       	sbiw	r28, 0x04	; 4
+ 454:	0f b6       	in	r0, 0x3f	; 63
+ 456:	f8 94       	cli
+ 458:	de bf       	out	0x3e, r29	; 62
+ 45a:	0f be       	out	0x3f, r0	; 63
+ 45c:	cd bf       	out	0x3d, r28	; 61
+ 45e:	8c 83       	std	Y+4, r24	; 0x04
+	unsigned char low_adc_byte, high_adc_byte, input_channel;
+
+	input_channel = (ADMUX & 0xf0) | (pin & 0x0f);  // p257
+ 460:	ec e7       	ldi	r30, 0x7C	; 124
+ 462:	f0 e0       	ldi	r31, 0x00	; 0
+ 464:	80 81       	ld	r24, Z
+ 466:	98 2f       	mov	r25, r24
+ 468:	80 ef       	ldi	r24, 0xF0	; 240
+ 46a:	98 23       	and	r25, r24
+ 46c:	8c 81       	ldd	r24, Y+4	; 0x04
+ 46e:	8f 70       	andi	r24, 0x0F	; 15
+ 470:	89 2b       	or	r24, r25
+ 472:	89 83       	std	Y+1, r24	; 0x01
+	ADMUX = input_channel; // select the input channel
+ 474:	ec e7       	ldi	r30, 0x7C	; 124
+ 476:	f0 e0       	ldi	r31, 0x00	; 0
+ 478:	89 81       	ldd	r24, Y+1	; 0x01
+ 47a:	80 83       	st	Z, r24
+	ADCSRA |= _BV(ADSC); // start conversion
+ 47c:	aa e7       	ldi	r26, 0x7A	; 122
+ 47e:	b0 e0       	ldi	r27, 0x00	; 0
+ 480:	ea e7       	ldi	r30, 0x7A	; 122
+ 482:	f0 e0       	ldi	r31, 0x00	; 0
+ 484:	80 81       	ld	r24, Z
+ 486:	80 64       	ori	r24, 0x40	; 64
+ 488:	8c 93       	st	X, r24
+	loop_until_bit_is_clear(ADCSRA, ADSC); // wait until complete
+ 48a:	ea e7       	ldi	r30, 0x7A	; 122
+ 48c:	f0 e0       	ldi	r31, 0x00	; 0
+ 48e:	80 81       	ld	r24, Z
+ 490:	99 27       	eor	r25, r25
+ 492:	80 74       	andi	r24, 0x40	; 64
+ 494:	90 70       	andi	r25, 0x00	; 0
+ 496:	00 97       	sbiw	r24, 0x00	; 0
+ 498:	c1 f7       	brne	.-16     	; 0x48a <adc_read+0x40>
+
+	// must read the low ADC byte before the high ADC byte
+	low_adc_byte = ADCL;
+ 49a:	e8 e7       	ldi	r30, 0x78	; 120
+ 49c:	f0 e0       	ldi	r31, 0x00	; 0
+ 49e:	80 81       	ld	r24, Z
+ 4a0:	8b 83       	std	Y+3, r24	; 0x03
+	high_adc_byte = ADCH;
+ 4a2:	e9 e7       	ldi	r30, 0x79	; 121
+ 4a4:	f0 e0       	ldi	r31, 0x00	; 0
+ 4a6:	80 81       	ld	r24, Z
+ 4a8:	8a 83       	std	Y+2, r24	; 0x02
+
+	return ((uint16_t)high_adc_byte << 8) | low_adc_byte;
+ 4aa:	8a 81       	ldd	r24, Y+2	; 0x02
+ 4ac:	99 27       	eor	r25, r25
+ 4ae:	38 2f       	mov	r19, r24
+ 4b0:	22 27       	eor	r18, r18
+ 4b2:	8b 81       	ldd	r24, Y+3	; 0x03
+ 4b4:	99 27       	eor	r25, r25
+ 4b6:	82 2b       	or	r24, r18
+ 4b8:	93 2b       	or	r25, r19
+ 4ba:	24 96       	adiw	r28, 0x04	; 4
+ 4bc:	0f b6       	in	r0, 0x3f	; 63
+ 4be:	f8 94       	cli
+ 4c0:	de bf       	out	0x3e, r29	; 62
+ 4c2:	0f be       	out	0x3f, r0	; 63
+ 4c4:	cd bf       	out	0x3d, r28	; 61
+ 4c6:	df 91       	pop	r29
+ 4c8:	cf 91       	pop	r28
+ 4ca:	08 95       	ret
+
+000004cc <digital_out_init>:
+}
+
+void digital_out_init(void) {
+ 4cc:	cf 93       	push	r28
+ 4ce:	df 93       	push	r29
+ 4d0:	cd b7       	in	r28, 0x3d	; 61
+ 4d2:	de b7       	in	r29, 0x3e	; 62
+	DDRD |= _BV(PD2) | _BV(PD3) | _BV(PD4) | _BV(PD5) | _BV(PD6) | _BV(PD7);
+ 4d4:	aa e2       	ldi	r26, 0x2A	; 42
+ 4d6:	b0 e0       	ldi	r27, 0x00	; 0
+ 4d8:	ea e2       	ldi	r30, 0x2A	; 42
+ 4da:	f0 e0       	ldi	r31, 0x00	; 0
+ 4dc:	80 81       	ld	r24, Z
+ 4de:	8c 6f       	ori	r24, 0xFC	; 252
+ 4e0:	8c 93       	st	X, r24
+	// init DIO 2-7 - PD2-7
+	//DDRD |= 0xFC; // 11111100
+
+	// init DIO 8-9 - PB0-1
+	DDRB |= _BV(PB0) | _BV(PB1);
+ 4e2:	a4 e2       	ldi	r26, 0x24	; 36
+ 4e4:	b0 e0       	ldi	r27, 0x00	; 0
+ 4e6:	e4 e2       	ldi	r30, 0x24	; 36
+ 4e8:	f0 e0       	ldi	r31, 0x00	; 0
+ 4ea:	80 81       	ld	r24, Z
+ 4ec:	83 60       	ori	r24, 0x03	; 3
+ 4ee:	8c 93       	st	X, r24
+ 4f0:	df 91       	pop	r29
+ 4f2:	cf 91       	pop	r28
+ 4f4:	08 95       	ret
+
+000004f6 <digital_write>:
+	//DDRB |= 0x03; // 00000011
+}
+
+// this comes simplified from arduino core (removed pwm stuff)
+void digital_write(uint8_t pin, uint8_t value) {
+ 4f6:	cf 93       	push	r28
+ 4f8:	df 93       	push	r29
+ 4fa:	cd b7       	in	r28, 0x3d	; 61
+ 4fc:	de b7       	in	r29, 0x3e	; 62
+ 4fe:	2f 97       	sbiw	r28, 0x0f	; 15
+ 500:	0f b6       	in	r0, 0x3f	; 63
+ 502:	f8 94       	cli
+ 504:	de bf       	out	0x3e, r29	; 62
+ 506:	0f be       	out	0x3f, r0	; 63
+ 508:	cd bf       	out	0x3d, r28	; 61
+ 50a:	8e 87       	std	Y+14, r24	; 0x0e
+ 50c:	6f 87       	std	Y+15, r22	; 0x0f
+	uint8_t bit = digitalPinToBitMask(pin);
+ 50e:	8e 85       	ldd	r24, Y+14	; 0x0e
+ 510:	99 27       	eor	r25, r25
+ 512:	85 57       	subi	r24, 0x75	; 117
+ 514:	9f 4f       	sbci	r25, 0xFF	; 255
+ 516:	99 87       	std	Y+9, r25	; 0x09
+ 518:	88 87       	std	Y+8, r24	; 0x08
+ 51a:	e8 85       	ldd	r30, Y+8	; 0x08
+ 51c:	f9 85       	ldd	r31, Y+9	; 0x09
+ 51e:	84 91       	lpm	r24, Z
+ 520:	8f 83       	std	Y+7, r24	; 0x07
+ 522:	8f 81       	ldd	r24, Y+7	; 0x07
+ 524:	8d 87       	std	Y+13, r24	; 0x0d
+	uint8_t port = digitalPinToPort(pin);
+ 526:	8e 85       	ldd	r24, Y+14	; 0x0e
+ 528:	99 27       	eor	r25, r25
+ 52a:	89 58       	subi	r24, 0x89	; 137
+ 52c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 52e:	9e 83       	std	Y+6, r25	; 0x06
+ 530:	8d 83       	std	Y+5, r24	; 0x05
+ 532:	ed 81       	ldd	r30, Y+5	; 0x05
+ 534:	fe 81       	ldd	r31, Y+6	; 0x06
+ 536:	84 91       	lpm	r24, Z
+ 538:	8c 83       	std	Y+4, r24	; 0x04
+ 53a:	8c 81       	ldd	r24, Y+4	; 0x04
+ 53c:	8c 87       	std	Y+12, r24	; 0x0c
+	volatile uint8_t *out;
+
+	if (port == NOT_A_PIN) return;
+ 53e:	8c 85       	ldd	r24, Y+12	; 0x0c
+ 540:	88 23       	and	r24, r24
+ 542:	21 f1       	breq	.+72     	; 0x58c <__stack+0x8d>
+
+	out = portOutputRegister(port);
+ 544:	8c 85       	ldd	r24, Y+12	; 0x0c
+ 546:	99 27       	eor	r25, r25
+ 548:	83 59       	subi	r24, 0x93	; 147
+ 54a:	9f 4f       	sbci	r25, 0xFF	; 255
+ 54c:	9b 83       	std	Y+3, r25	; 0x03
+ 54e:	8a 83       	std	Y+2, r24	; 0x02
+ 550:	ea 81       	ldd	r30, Y+2	; 0x02
+ 552:	fb 81       	ldd	r31, Y+3	; 0x03
+ 554:	84 91       	lpm	r24, Z
+ 556:	89 83       	std	Y+1, r24	; 0x01
+ 558:	89 81       	ldd	r24, Y+1	; 0x01
+ 55a:	99 27       	eor	r25, r25
+ 55c:	9b 87       	std	Y+11, r25	; 0x0b
+ 55e:	8a 87       	std	Y+10, r24	; 0x0a
+
+	if (value == LOW)
+ 560:	8f 85       	ldd	r24, Y+15	; 0x0f
+ 562:	88 23       	and	r24, r24
+ 564:	59 f4       	brne	.+22     	; 0x57c <__stack+0x7d>
+		*out &= ~bit;
+ 566:	ea 85       	ldd	r30, Y+10	; 0x0a
+ 568:	fb 85       	ldd	r31, Y+11	; 0x0b
+ 56a:	80 81       	ld	r24, Z
+ 56c:	98 2f       	mov	r25, r24
+ 56e:	8d 85       	ldd	r24, Y+13	; 0x0d
+ 570:	80 95       	com	r24
+ 572:	89 23       	and	r24, r25
+ 574:	ea 85       	ldd	r30, Y+10	; 0x0a
+ 576:	fb 85       	ldd	r31, Y+11	; 0x0b
+ 578:	80 83       	st	Z, r24
+ 57a:	08 c0       	rjmp	.+16     	; 0x58c <__stack+0x8d>
+	else
+		*out |= bit;
+ 57c:	ea 85       	ldd	r30, Y+10	; 0x0a
+ 57e:	fb 85       	ldd	r31, Y+11	; 0x0b
+ 580:	90 81       	ld	r25, Z
+ 582:	8d 85       	ldd	r24, Y+13	; 0x0d
+ 584:	89 2b       	or	r24, r25
+ 586:	ea 85       	ldd	r30, Y+10	; 0x0a
+ 588:	fb 85       	ldd	r31, Y+11	; 0x0b
+ 58a:	80 83       	st	Z, r24
+ 58c:	2f 96       	adiw	r28, 0x0f	; 15
+ 58e:	0f b6       	in	r0, 0x3f	; 63
+ 590:	f8 94       	cli
+ 592:	de bf       	out	0x3e, r29	; 62
+ 594:	0f be       	out	0x3f, r0	; 63
+ 596:	cd bf       	out	0x3d, r28	; 61
+ 598:	df 91       	pop	r29
+ 59a:	cf 91       	pop	r28
+ 59c:	08 95       	ret
+
+0000059e <main>:
+ *
+ * (c) 2009 Jan Anlauff <n900push at 23t dot de>
+ */
+#include "includes/readsensors.h"
+
+int main(void) {
+ 59e:	cf ef       	ldi	r28, 0xFF	; 255
+ 5a0:	d4 e0       	ldi	r29, 0x04	; 4
+ 5a2:	de bf       	out	0x3e, r29	; 62
+ 5a4:	cd bf       	out	0x3d, r28	; 61
+	init();
+ 5a6:	0e 94 d9 02 	call	0x5b2	; 0x5b2 <init>
+//	while (1) {
+//		sample_matrix();
+//	}
+	return 0;
+ 5aa:	80 e0       	ldi	r24, 0x00	; 0
+ 5ac:	90 e0       	ldi	r25, 0x00	; 0
+ 5ae:	0c 94 6a 04 	jmp	0x8d4	; 0x8d4 <_exit>
+
+000005b2 <init>:
+}
+
+void init(void) {
+ 5b2:	cf 93       	push	r28
+ 5b4:	df 93       	push	r29
+ 5b6:	cd b7       	in	r28, 0x3d	; 61
+ 5b8:	de b7       	in	r29, 0x3e	; 62
+	led_init();
+ 5ba:	0e 94 ca 01 	call	0x394	; 0x394 <led_init>
+	led_off();
+ 5be:	0e 94 e3 01 	call	0x3c6	; 0x3c6 <led_off>
+//	init_spi_slave();
+	sei(); // Turn on interrupts
+ 5c2:	78 94       	sei
+	//uart_init((F_CPU / BAUDRATE / 16) - 1);
+//	uart_init();
+	adc_init();
+ 5c4:	0e 94 05 02 	call	0x40a	; 0x40a <adc_init>
+	digital_out_init();
+ 5c8:	0e 94 66 02 	call	0x4cc	; 0x4cc <digital_out_init>
+	led_on();
+ 5cc:	0e 94 d5 01 	call	0x3aa	; 0x3aa <led_on>
+ 5d0:	df 91       	pop	r29
+ 5d2:	cf 91       	pop	r28
+ 5d4:	08 95       	ret
+
+000005d6 <uart_init>:
+#define BUFSIZE_OUT 0x40
+uint8_t outbuf[BUFSIZE_OUT];
+fifo_t outfifo;
+
+void uart_init()
+{
+ 5d6:	cf 93       	push	r28
+ 5d8:	df 93       	push	r29
+ 5da:	cd b7       	in	r28, 0x3d	; 61
+ 5dc:	de b7       	in	r29, 0x3e	; 62
+ 5de:	23 97       	sbiw	r28, 0x03	; 3
+ 5e0:	0f b6       	in	r0, 0x3f	; 63
+ 5e2:	f8 94       	cli
+ 5e4:	de bf       	out	0x3e, r29	; 62
+ 5e6:	0f be       	out	0x3f, r0	; 63
+ 5e8:	cd bf       	out	0x3d, r28	; 61
+    uint8_t sreg = SREG;
+ 5ea:	ef e5       	ldi	r30, 0x5F	; 95
+ 5ec:	f0 e0       	ldi	r31, 0x00	; 0
+ 5ee:	80 81       	ld	r24, Z
+ 5f0:	8b 83       	std	Y+3, r24	; 0x03
+    uint16_t ubrr = (uint16_t) ((uint32_t) F_CPU/(16*BAUDRATE) - 1);
+ 5f2:	83 e0       	ldi	r24, 0x03	; 3
+ 5f4:	90 e0       	ldi	r25, 0x00	; 0
+ 5f6:	9a 83       	std	Y+2, r25	; 0x02
+ 5f8:	89 83       	std	Y+1, r24	; 0x01
+
+    UBRRH = (uint8_t) (ubrr>>8);
+ 5fa:	e5 ec       	ldi	r30, 0xC5	; 197
+ 5fc:	f0 e0       	ldi	r31, 0x00	; 0
+ 5fe:	89 81       	ldd	r24, Y+1	; 0x01
+ 600:	9a 81       	ldd	r25, Y+2	; 0x02
+ 602:	89 2f       	mov	r24, r25
+ 604:	99 27       	eor	r25, r25
+ 606:	80 83       	st	Z, r24
+    UBRRL = (uint8_t) (ubrr);
+ 608:	e4 ec       	ldi	r30, 0xC4	; 196
+ 60a:	f0 e0       	ldi	r31, 0x00	; 0
+ 60c:	89 81       	ldd	r24, Y+1	; 0x01
+ 60e:	80 83       	st	Z, r24
+
+    // Interrupts kurz deaktivieren
+    cli();
+ 610:	f8 94       	cli
+
+    // UART Receiver und Transmitter anschalten, Receive-Interrupt aktivieren
+    // Data mode 8N1, asynchron
+    UCSRB = (1 << RXEN) | (1 << TXEN) | (1 << RXCIE);
+ 612:	e1 ec       	ldi	r30, 0xC1	; 193
+ 614:	f0 e0       	ldi	r31, 0x00	; 0
+ 616:	88 e9       	ldi	r24, 0x98	; 152
+ 618:	80 83       	st	Z, r24
+    //for ATMega8
+    //UCSRC = (1 << URSEL) | (1 << UCSZ1) | (1 << UCSZ0);
+    UCSRC = (1 << UCSZ1) | (1 << UCSZ0);
+ 61a:	e2 ec       	ldi	r30, 0xC2	; 194
+ 61c:	f0 e0       	ldi	r31, 0x00	; 0
+ 61e:	86 e0       	ldi	r24, 0x06	; 6
+ 620:	80 83       	st	Z, r24
+
+    // Flush Receive-Buffer (entfernen evtl. vorhandener ungültiger Werte)
+    do
+    {
+        // UDR auslesen (Wert wird nicht verwendet)
+        UDR;
+ 622:	e6 ec       	ldi	r30, 0xC6	; 198
+ 624:	f0 e0       	ldi	r31, 0x00	; 0
+ 626:	80 81       	ld	r24, Z
+    }
+    while (UCSRA & (1 << RXC));
+ 628:	e0 ec       	ldi	r30, 0xC0	; 192
+ 62a:	f0 e0       	ldi	r31, 0x00	; 0
+ 62c:	80 81       	ld	r24, Z
+ 62e:	88 23       	and	r24, r24
+ 630:	c4 f3       	brlt	.-16     	; 0x622 <uart_init+0x4c>
+
+    // Rücksetzen von Receive und Transmit Complete-Flags
+    UCSRA = (1 << RXC) | (1 << TXC);
+ 632:	e0 ec       	ldi	r30, 0xC0	; 192
+ 634:	f0 e0       	ldi	r31, 0x00	; 0
+ 636:	80 ec       	ldi	r24, 0xC0	; 192
+ 638:	80 83       	st	Z, r24
+
+    // Global Interrupt-Flag wieder herstellen
+    SREG = sreg;
+ 63a:	ef e5       	ldi	r30, 0x5F	; 95
+ 63c:	f0 e0       	ldi	r31, 0x00	; 0
+ 63e:	8b 81       	ldd	r24, Y+3	; 0x03
+ 640:	80 83       	st	Z, r24
+
+    // FIFOs für Ein- und Ausgabe initialisieren
+    fifo_init (&infifo,   inbuf, BUFSIZE_IN);
+ 642:	80 e0       	ldi	r24, 0x00	; 0
+ 644:	91 e0       	ldi	r25, 0x01	; 1
+ 646:	28 e4       	ldi	r18, 0x48	; 72
+ 648:	31 e0       	ldi	r19, 0x01	; 1
+ 64a:	40 e4       	ldi	r20, 0x40	; 64
+ 64c:	bc 01       	movw	r22, r24
+ 64e:	c9 01       	movw	r24, r18
+ 650:	0e 94 6f 00 	call	0xde	; 0xde <fifo_init>
+    fifo_init (&outfifo, outbuf, BUFSIZE_OUT);
+ 654:	80 e5       	ldi	r24, 0x50	; 80
+ 656:	91 e0       	ldi	r25, 0x01	; 1
+ 658:	20 e4       	ldi	r18, 0x40	; 64
+ 65a:	31 e0       	ldi	r19, 0x01	; 1
+ 65c:	40 e4       	ldi	r20, 0x40	; 64
+ 65e:	bc 01       	movw	r22, r24
+ 660:	c9 01       	movw	r24, r18
+ 662:	0e 94 6f 00 	call	0xde	; 0xde <fifo_init>
+ 666:	23 96       	adiw	r28, 0x03	; 3
+ 668:	0f b6       	in	r0, 0x3f	; 63
+ 66a:	f8 94       	cli
+ 66c:	de bf       	out	0x3e, r29	; 62
+ 66e:	0f be       	out	0x3f, r0	; 63
+ 670:	cd bf       	out	0x3d, r28	; 61
+ 672:	df 91       	pop	r29
+ 674:	cf 91       	pop	r28
+ 676:	08 95       	ret
+
+00000678 <__vector_18>:
+}
+
+
+// Empfangene Zeichen werden in die Eingabgs-FIFO gespeichert und warten dort
+SIGNAL (SIG_UART_RECV)
+{
+ 678:	1f 92       	push	r1
+ 67a:	0f 92       	push	r0
+ 67c:	0f b6       	in	r0, 0x3f	; 63
+ 67e:	0f 92       	push	r0
+ 680:	11 24       	eor	r1, r1
+ 682:	2f 93       	push	r18
+ 684:	3f 93       	push	r19
+ 686:	4f 93       	push	r20
+ 688:	5f 93       	push	r21
+ 68a:	6f 93       	push	r22
+ 68c:	7f 93       	push	r23
+ 68e:	8f 93       	push	r24
+ 690:	9f 93       	push	r25
+ 692:	af 93       	push	r26
+ 694:	bf 93       	push	r27
+ 696:	ef 93       	push	r30
+ 698:	ff 93       	push	r31
+ 69a:	cf 93       	push	r28
+ 69c:	df 93       	push	r29
+ 69e:	cd b7       	in	r28, 0x3d	; 61
+ 6a0:	de b7       	in	r29, 0x3e	; 62
+    _inline_fifo_put (&infifo, UDR);
+ 6a2:	e6 ec       	ldi	r30, 0xC6	; 198
+ 6a4:	f0 e0       	ldi	r31, 0x00	; 0
+ 6a6:	20 81       	ld	r18, Z
+ 6a8:	88 e4       	ldi	r24, 0x48	; 72
+ 6aa:	91 e0       	ldi	r25, 0x01	; 1
+ 6ac:	62 2f       	mov	r22, r18
+ 6ae:	0e 94 6c 03 	call	0x6d8	; 0x6d8 <_inline_fifo_put>
+ 6b2:	df 91       	pop	r29
+ 6b4:	cf 91       	pop	r28
+ 6b6:	ff 91       	pop	r31
+ 6b8:	ef 91       	pop	r30
+ 6ba:	bf 91       	pop	r27
+ 6bc:	af 91       	pop	r26
+ 6be:	9f 91       	pop	r25
+ 6c0:	8f 91       	pop	r24
+ 6c2:	7f 91       	pop	r23
+ 6c4:	6f 91       	pop	r22
+ 6c6:	5f 91       	pop	r21
+ 6c8:	4f 91       	pop	r20
+ 6ca:	3f 91       	pop	r19
+ 6cc:	2f 91       	pop	r18
+ 6ce:	0f 90       	pop	r0
+ 6d0:	0f be       	out	0x3f, r0	; 63
+ 6d2:	0f 90       	pop	r0
+ 6d4:	1f 90       	pop	r1
+ 6d6:	18 95       	reti
+
+000006d8 <_inline_fifo_put>:
+extern void fifo_init (fifo_t*, uint8_t* buf, const uint8_t size);
+extern uint8_t fifo_put (fifo_t*, const uint8_t data);
+extern uint8_t fifo_get_wait (fifo_t*);
+extern int fifo_get_nowait (fifo_t*);
+
+static inline uint8_t _inline_fifo_put (fifo_t *f, const uint8_t data) {
+ 6d8:	cf 93       	push	r28
+ 6da:	df 93       	push	r29
+ 6dc:	cd b7       	in	r28, 0x3d	; 61
+ 6de:	de b7       	in	r29, 0x3e	; 62
+ 6e0:	29 97       	sbiw	r28, 0x09	; 9
+ 6e2:	0f b6       	in	r0, 0x3f	; 63
+ 6e4:	f8 94       	cli
+ 6e6:	de bf       	out	0x3e, r29	; 62
+ 6e8:	0f be       	out	0x3f, r0	; 63
+ 6ea:	cd bf       	out	0x3d, r28	; 61
+ 6ec:	9e 83       	std	Y+6, r25	; 0x06
+ 6ee:	8d 83       	std	Y+5, r24	; 0x05
+ 6f0:	6f 83       	std	Y+7, r22	; 0x07
+	if (f->count >= f->size)
+ 6f2:	ed 81       	ldd	r30, Y+5	; 0x05
+ 6f4:	fe 81       	ldd	r31, Y+6	; 0x06
+ 6f6:	90 81       	ld	r25, Z
+ 6f8:	ed 81       	ldd	r30, Y+5	; 0x05
+ 6fa:	fe 81       	ldd	r31, Y+6	; 0x06
+ 6fc:	81 81       	ldd	r24, Z+1	; 0x01
+ 6fe:	98 17       	cp	r25, r24
+ 700:	18 f0       	brcs	.+6      	; 0x708 <_inline_fifo_put+0x30>
+		return 0;
+ 702:	19 86       	std	Y+9, r1	; 0x09
+ 704:	18 86       	std	Y+8, r1	; 0x08
+ 706:	44 c0       	rjmp	.+136    	; 0x790 <_inline_fifo_put+0xb8>
+
+	uint8_t * pwrite = f->pwrite;
+ 708:	ed 81       	ldd	r30, Y+5	; 0x05
+ 70a:	fe 81       	ldd	r31, Y+6	; 0x06
+ 70c:	84 81       	ldd	r24, Z+4	; 0x04
+ 70e:	95 81       	ldd	r25, Z+5	; 0x05
+ 710:	9c 83       	std	Y+4, r25	; 0x04
+ 712:	8b 83       	std	Y+3, r24	; 0x03
+
+	*(pwrite++) = data;
+ 714:	eb 81       	ldd	r30, Y+3	; 0x03
+ 716:	fc 81       	ldd	r31, Y+4	; 0x04
+ 718:	8f 81       	ldd	r24, Y+7	; 0x07
+ 71a:	80 83       	st	Z, r24
+ 71c:	8b 81       	ldd	r24, Y+3	; 0x03
+ 71e:	9c 81       	ldd	r25, Y+4	; 0x04
+ 720:	01 96       	adiw	r24, 0x01	; 1
+ 722:	9c 83       	std	Y+4, r25	; 0x04
+ 724:	8b 83       	std	Y+3, r24	; 0x03
+
+	uint8_t write2end = f->write2end;
+ 726:	ed 81       	ldd	r30, Y+5	; 0x05
+ 728:	fe 81       	ldd	r31, Y+6	; 0x06
+ 72a:	87 81       	ldd	r24, Z+7	; 0x07
+ 72c:	8a 83       	std	Y+2, r24	; 0x02
+
+	if (--write2end == 0)
+ 72e:	8a 81       	ldd	r24, Y+2	; 0x02
+ 730:	81 50       	subi	r24, 0x01	; 1
+ 732:	8a 83       	std	Y+2, r24	; 0x02
+ 734:	8a 81       	ldd	r24, Y+2	; 0x02
+ 736:	88 23       	and	r24, r24
+ 738:	69 f4       	brne	.+26     	; 0x754 <_inline_fifo_put+0x7c>
+	{
+		write2end = f->size;
+ 73a:	ed 81       	ldd	r30, Y+5	; 0x05
+ 73c:	fe 81       	ldd	r31, Y+6	; 0x06
+ 73e:	81 81       	ldd	r24, Z+1	; 0x01
+ 740:	8a 83       	std	Y+2, r24	; 0x02
+		pwrite -= write2end;
+ 742:	8a 81       	ldd	r24, Y+2	; 0x02
+ 744:	99 27       	eor	r25, r25
+ 746:	9c 01       	movw	r18, r24
+ 748:	8b 81       	ldd	r24, Y+3	; 0x03
+ 74a:	9c 81       	ldd	r25, Y+4	; 0x04
+ 74c:	82 1b       	sub	r24, r18
+ 74e:	93 0b       	sbc	r25, r19
+ 750:	9c 83       	std	Y+4, r25	; 0x04
+ 752:	8b 83       	std	Y+3, r24	; 0x03
+	}
+
+	f->write2end = write2end;
+ 754:	ed 81       	ldd	r30, Y+5	; 0x05
+ 756:	fe 81       	ldd	r31, Y+6	; 0x06
+ 758:	8a 81       	ldd	r24, Y+2	; 0x02
+ 75a:	87 83       	std	Z+7, r24	; 0x07
+	f->pwrite = pwrite;
+ 75c:	ed 81       	ldd	r30, Y+5	; 0x05
+ 75e:	fe 81       	ldd	r31, Y+6	; 0x06
+ 760:	8b 81       	ldd	r24, Y+3	; 0x03
+ 762:	9c 81       	ldd	r25, Y+4	; 0x04
+ 764:	95 83       	std	Z+5, r25	; 0x05
+ 766:	84 83       	std	Z+4, r24	; 0x04
+
+	uint8_t sreg = SREG;
+ 768:	ef e5       	ldi	r30, 0x5F	; 95
+ 76a:	f0 e0       	ldi	r31, 0x00	; 0
+ 76c:	80 81       	ld	r24, Z
+ 76e:	89 83       	std	Y+1, r24	; 0x01
+	cli();
+ 770:	f8 94       	cli
+	f->count++;
+ 772:	ed 81       	ldd	r30, Y+5	; 0x05
+ 774:	fe 81       	ldd	r31, Y+6	; 0x06
+ 776:	80 81       	ld	r24, Z
+ 778:	8f 5f       	subi	r24, 0xFF	; 255
+ 77a:	ed 81       	ldd	r30, Y+5	; 0x05
+ 77c:	fe 81       	ldd	r31, Y+6	; 0x06
+ 77e:	80 83       	st	Z, r24
+	SREG = sreg;
+ 780:	ef e5       	ldi	r30, 0x5F	; 95
+ 782:	f0 e0       	ldi	r31, 0x00	; 0
+ 784:	89 81       	ldd	r24, Y+1	; 0x01
+ 786:	80 83       	st	Z, r24
+
+	return 1;
+ 788:	81 e0       	ldi	r24, 0x01	; 1
+ 78a:	90 e0       	ldi	r25, 0x00	; 0
+ 78c:	99 87       	std	Y+9, r25	; 0x09
+ 78e:	88 87       	std	Y+8, r24	; 0x08
+ 790:	88 85       	ldd	r24, Y+8	; 0x08
+ 792:	99 85       	ldd	r25, Y+9	; 0x09
+ 794:	29 96       	adiw	r28, 0x09	; 9
+ 796:	0f b6       	in	r0, 0x3f	; 63
+ 798:	f8 94       	cli
+ 79a:	de bf       	out	0x3e, r29	; 62
+ 79c:	0f be       	out	0x3f, r0	; 63
+ 79e:	cd bf       	out	0x3d, r28	; 61
+ 7a0:	df 91       	pop	r29
+ 7a2:	cf 91       	pop	r28
+ 7a4:	08 95       	ret
+
+000007a6 <__vector_19>:
+
+// Ein Zeichen aus der Ausgabe-FIFO lesen und ausgeben
+// Ist das Zeichen fertig ausgegeben, wird ein neuer SIG_UART_DATA-IRQ getriggert
+// Ist die FIFO leer, deaktiviert die ISR ihren eigenen IRQ.
+SIGNAL (SIG_UART_DATA)
+{
+ 7a6:	1f 92       	push	r1
+ 7a8:	0f 92       	push	r0
+ 7aa:	0f b6       	in	r0, 0x3f	; 63
+ 7ac:	0f 92       	push	r0
+ 7ae:	11 24       	eor	r1, r1
+ 7b0:	0f 93       	push	r16
+ 7b2:	1f 93       	push	r17
+ 7b4:	2f 93       	push	r18
+ 7b6:	3f 93       	push	r19
+ 7b8:	4f 93       	push	r20
+ 7ba:	5f 93       	push	r21
+ 7bc:	6f 93       	push	r22
+ 7be:	7f 93       	push	r23
+ 7c0:	8f 93       	push	r24
+ 7c2:	9f 93       	push	r25
+ 7c4:	af 93       	push	r26
+ 7c6:	bf 93       	push	r27
+ 7c8:	ef 93       	push	r30
+ 7ca:	ff 93       	push	r31
+ 7cc:	cf 93       	push	r28
+ 7ce:	df 93       	push	r29
+ 7d0:	cd b7       	in	r28, 0x3d	; 61
+ 7d2:	de b7       	in	r29, 0x3e	; 62
+    if (outfifo.count > 0)
+ 7d4:	80 91 40 01 	lds	r24, 0x0140
+ 7d8:	88 23       	and	r24, r24
+ 7da:	49 f0       	breq	.+18     	; 0x7ee <__vector_19+0x48>
+       UDR = _inline_fifo_get (&outfifo);
+ 7dc:	06 ec       	ldi	r16, 0xC6	; 198
+ 7de:	10 e0       	ldi	r17, 0x00	; 0
+ 7e0:	80 e4       	ldi	r24, 0x40	; 64
+ 7e2:	91 e0       	ldi	r25, 0x01	; 1
+ 7e4:	0e 94 13 04 	call	0x826	; 0x826 <_inline_fifo_get>
+ 7e8:	f8 01       	movw	r30, r16
+ 7ea:	80 83       	st	Z, r24
+ 7ec:	07 c0       	rjmp	.+14     	; 0x7fc <__vector_19+0x56>
+    else
+        UCSRB &= ~(1 << UDRIE);
+ 7ee:	a1 ec       	ldi	r26, 0xC1	; 193
+ 7f0:	b0 e0       	ldi	r27, 0x00	; 0
+ 7f2:	e1 ec       	ldi	r30, 0xC1	; 193
+ 7f4:	f0 e0       	ldi	r31, 0x00	; 0
+ 7f6:	80 81       	ld	r24, Z
+ 7f8:	8f 7d       	andi	r24, 0xDF	; 223
+ 7fa:	8c 93       	st	X, r24
+ 7fc:	df 91       	pop	r29
+ 7fe:	cf 91       	pop	r28
+ 800:	ff 91       	pop	r31
+ 802:	ef 91       	pop	r30
+ 804:	bf 91       	pop	r27
+ 806:	af 91       	pop	r26
+ 808:	9f 91       	pop	r25
+ 80a:	8f 91       	pop	r24
+ 80c:	7f 91       	pop	r23
+ 80e:	6f 91       	pop	r22
+ 810:	5f 91       	pop	r21
+ 812:	4f 91       	pop	r20
+ 814:	3f 91       	pop	r19
+ 816:	2f 91       	pop	r18
+ 818:	1f 91       	pop	r17
+ 81a:	0f 91       	pop	r16
+ 81c:	0f 90       	pop	r0
+ 81e:	0f be       	out	0x3f, r0	; 63
+ 820:	0f 90       	pop	r0
+ 822:	1f 90       	pop	r1
+ 824:	18 95       	reti
+
+00000826 <_inline_fifo_get>:
+}
+
+static inline uint8_t _inline_fifo_get (fifo_t *f) {
+ 826:	cf 93       	push	r28
+ 828:	df 93       	push	r29
+ 82a:	cd b7       	in	r28, 0x3d	; 61
+ 82c:	de b7       	in	r29, 0x3e	; 62
+ 82e:	27 97       	sbiw	r28, 0x07	; 7
+ 830:	0f b6       	in	r0, 0x3f	; 63
+ 832:	f8 94       	cli
+ 834:	de bf       	out	0x3e, r29	; 62
+ 836:	0f be       	out	0x3f, r0	; 63
+ 838:	cd bf       	out	0x3d, r28	; 61
+ 83a:	9f 83       	std	Y+7, r25	; 0x07
+ 83c:	8e 83       	std	Y+6, r24	; 0x06
+	uint8_t *pread = f->pread;
+ 83e:	ee 81       	ldd	r30, Y+6	; 0x06
+ 840:	ff 81       	ldd	r31, Y+7	; 0x07
+ 842:	82 81       	ldd	r24, Z+2	; 0x02
+ 844:	93 81       	ldd	r25, Z+3	; 0x03
+ 846:	9d 83       	std	Y+5, r25	; 0x05
+ 848:	8c 83       	std	Y+4, r24	; 0x04
+	uint8_t data = *(pread++);
+ 84a:	ec 81       	ldd	r30, Y+4	; 0x04
+ 84c:	fd 81       	ldd	r31, Y+5	; 0x05
+ 84e:	80 81       	ld	r24, Z
+ 850:	8b 83       	std	Y+3, r24	; 0x03
+ 852:	8c 81       	ldd	r24, Y+4	; 0x04
+ 854:	9d 81       	ldd	r25, Y+5	; 0x05
+ 856:	01 96       	adiw	r24, 0x01	; 1
+ 858:	9d 83       	std	Y+5, r25	; 0x05
+ 85a:	8c 83       	std	Y+4, r24	; 0x04
+	uint8_t read2end = f->read2end;
+ 85c:	ee 81       	ldd	r30, Y+6	; 0x06
+ 85e:	ff 81       	ldd	r31, Y+7	; 0x07
+ 860:	86 81       	ldd	r24, Z+6	; 0x06
+ 862:	8a 83       	std	Y+2, r24	; 0x02
+
+	if (--read2end == 0)
+ 864:	8a 81       	ldd	r24, Y+2	; 0x02
+ 866:	81 50       	subi	r24, 0x01	; 1
+ 868:	8a 83       	std	Y+2, r24	; 0x02
+ 86a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 86c:	88 23       	and	r24, r24
+ 86e:	69 f4       	brne	.+26     	; 0x88a <_inline_fifo_get+0x64>
+	{
+		read2end = f->size;
+ 870:	ee 81       	ldd	r30, Y+6	; 0x06
+ 872:	ff 81       	ldd	r31, Y+7	; 0x07
+ 874:	81 81       	ldd	r24, Z+1	; 0x01
+ 876:	8a 83       	std	Y+2, r24	; 0x02
+		pread -= read2end;
+ 878:	8a 81       	ldd	r24, Y+2	; 0x02
+ 87a:	99 27       	eor	r25, r25
+ 87c:	9c 01       	movw	r18, r24
+ 87e:	8c 81       	ldd	r24, Y+4	; 0x04
+ 880:	9d 81       	ldd	r25, Y+5	; 0x05
+ 882:	82 1b       	sub	r24, r18
+ 884:	93 0b       	sbc	r25, r19
+ 886:	9d 83       	std	Y+5, r25	; 0x05
+ 888:	8c 83       	std	Y+4, r24	; 0x04
+	}
+
+	f->pread = pread;
+ 88a:	ee 81       	ldd	r30, Y+6	; 0x06
+ 88c:	ff 81       	ldd	r31, Y+7	; 0x07
+ 88e:	8c 81       	ldd	r24, Y+4	; 0x04
+ 890:	9d 81       	ldd	r25, Y+5	; 0x05
+ 892:	93 83       	std	Z+3, r25	; 0x03
+ 894:	82 83       	std	Z+2, r24	; 0x02
+	f->read2end = read2end;
+ 896:	ee 81       	ldd	r30, Y+6	; 0x06
+ 898:	ff 81       	ldd	r31, Y+7	; 0x07
+ 89a:	8a 81       	ldd	r24, Y+2	; 0x02
+ 89c:	86 83       	std	Z+6, r24	; 0x06
+
+	uint8_t sreg = SREG;
+ 89e:	ef e5       	ldi	r30, 0x5F	; 95
+ 8a0:	f0 e0       	ldi	r31, 0x00	; 0
+ 8a2:	80 81       	ld	r24, Z
+ 8a4:	89 83       	std	Y+1, r24	; 0x01
+	cli();
+ 8a6:	f8 94       	cli
+	f->count--;
+ 8a8:	ee 81       	ldd	r30, Y+6	; 0x06
+ 8aa:	ff 81       	ldd	r31, Y+7	; 0x07
+ 8ac:	80 81       	ld	r24, Z
+ 8ae:	81 50       	subi	r24, 0x01	; 1
+ 8b0:	ee 81       	ldd	r30, Y+6	; 0x06
+ 8b2:	ff 81       	ldd	r31, Y+7	; 0x07
+ 8b4:	80 83       	st	Z, r24
+	SREG = sreg;
+ 8b6:	ef e5       	ldi	r30, 0x5F	; 95
+ 8b8:	f0 e0       	ldi	r31, 0x00	; 0
+ 8ba:	89 81       	ldd	r24, Y+1	; 0x01
+ 8bc:	80 83       	st	Z, r24
+
+	return data;
+ 8be:	8b 81       	ldd	r24, Y+3	; 0x03
+ 8c0:	99 27       	eor	r25, r25
+ 8c2:	27 96       	adiw	r28, 0x07	; 7
+ 8c4:	0f b6       	in	r0, 0x3f	; 63
+ 8c6:	f8 94       	cli
+ 8c8:	de bf       	out	0x3e, r29	; 62
+ 8ca:	0f be       	out	0x3f, r0	; 63
+ 8cc:	cd bf       	out	0x3d, r28	; 61
+ 8ce:	df 91       	pop	r29
+ 8d0:	cf 91       	pop	r28
+ 8d2:	08 95       	ret
+
+000008d4 <_exit>:
+ 8d4:	ff cf       	rjmp	.-2      	; 0x8d4 <_exit>

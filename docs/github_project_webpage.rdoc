@@ -1,0 +1,11 @@
+= Github webpage howto
+
+hi kids. in order to add/edit content to the github project page: 
+  
+  http://pangdudu.github.com/pushitrealgood
+  
+you need to check out the "gh-pages" branch of the project containing the html-docs:
+
+  git pull origin gh-pages
+  
+this will pull the website content. edit and push as usual. 

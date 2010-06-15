@@ -1,0 +1,35 @@
+hi jan:
+
+also du machst zuerst:
+sudo gem sources -a http://gems.github.com
+
+dann:
+sudo gem install pangdudu-ruby-dbus pangdudu-ruby-dbus-client serialport
+
+dann:
+sudo apt-get install libqt4-ruby1.8 libqt4-ruby1.8-dev
+
+dann oeffnest du 4 consolen:
+#das kennst du ja
+1.: sudo rfcomm connect (...)
+
+#dbus server
+2.: SOME_PATH/pushitrealgood/lab/testbus/start_dbus_session.sh 
+
+#serial auf dbus magie
+3.: ruby SOME_PATH/pushitrealgood/lab/serialconnector/supercerial.rb
+
+(je nachdem wie die daten aussehen die ihr rausblast, muesst ihr diese zeile anpassen:
+d = line.strip.split(/[xyzXYZ]/)
+durch z.B.: 
+d = line.strip.split(/[,]/)
+und
+dbus_signal :newData, "x:d, y:d, z:d, X:d, Y:d, Z:d" # x,y,z,X,Y,Z as double
+durch was ihr habt, z.B:
+dbus_signal :newData, "acc1:d, acc2:d, acc3:d, acc4:d, acc5:d, acc6:d, rot1:d, rot2:d, rot3:d, rot4:d, rot5:d, rot6:d"
+)
+
+#gui!
+4.: ruby SOME_PATH/pushitrealgood/lab/annotator/lib/gui.rb
+
+so, sollte gehen, man kann in der gui noch mehr werte anzeigen lassen, ist relativ selbsterklaerend.

@@ -1,0 +1,71 @@
+== Global git (github) setup:
+
+  Download and install Git
+  git config --global user.name "Nick"
+  git config --global user.email pangdudu@gmail.com
+
+== Github specific
+
+Oki, inorder to contribute you need to: 
+
+- be a collaborator of the project
+- add your ssh-key that you use for "pushing" (=svn-commit) to the project or your account            
+- add key with ssh-add FILENAME to ssh-agent
+
+== What you want to do in order to work:
+
+  cd whereyourcodeshouldbe
+
+now go to our github project and click "Your Clone URL", which will give you something like:
+
+  git clone git@github.com:pangdudu/pushitrealgood.git
+
+this will check out the code and skell and set github as the origin/master (=svn-repo server).
+you can have multiple origins/locations for code in git which makes everything a 
+little nasty (in my humble opinion).
+
+if you want to add and commit a file, it's done like this:
+
+  git add filename.ext
+  
+to commit a single file:
+
+  git commit filename.ext
+  
+to commit all changes you did on the repo:
+
+  git commit -a
+  
+i normaly do something like this to save time:
+
+  git commit -a -m 'awesome informative commit message'
+  
+as you see, you commit localy, in order to "push" (commit to server/github), you do this:
+  
+  git push origin master
+  
+you can also add other locations and push to them, for local forks, etc. if you just do:
+
+  git push
+ 
+it will normaly just push to (origin master / github) anyway, or tell you otherwise.
+ 
+== Nice things about daily github work
+
+what i really like about git is that you dont need to 'svn mv/cp/rm' anymore and
+that there's just one .git folder in the '/' of the repo. also git is really smart
+ad normaly does what you expect is to do. just tread it like what you want svn to
+be, and you'll be fine. :) 
+  
+== When starting a project from scratch
+
+this is just for the fun of it, if you start a new project you do:
+
+  mkdir pushitrealgood
+  cd pushitrealgood
+  git init
+  touch README
+  git add README
+  git commit -m 'first commit'
+  git remote add origin git@github.com:pangdudu/pushitrealgood.git
+  git push origin master

@@ -1,0 +1,4 @@
+cp data/Adore64.ttf /usr/share/fonts/
+fc-cache -f -v
+apt-get install python-twitter
+run-standalone.sh python2.5 tiltnroll.py

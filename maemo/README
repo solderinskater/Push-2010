@@ -1,0 +1,35 @@
+Tilt'n'Roll
+
+Installieren auf dem Handy:
+• git
+	∘ apt-get install git-core
+	∘ ssh key erzeugen, ssh-add, git auschecken
+• gui + trick detection
+	∘ cp data/Adore64.ttf ~/.fonts
+	∘ fc-cache -f -v
+	∘ apt-get install python-twitter
+	∘ apt-get install python2.5-qt4-core (maemo2)
+	∘ dann extras-testing aktivieren
+		‣ und python2.5-qt4-gui installieren (auch maemo2) (WTF)
+	∘ dann extras-devel aktivieren(!)
+		‣ und python2.5-qt4-dbus python-numpy installiern
+	∘ dann devel und testing wieder deaktivieren ...
+	∘ fuer  numpy symlinks machen in /usr/lib
+		‣ liblapack.so -> liblapack.so.3gf
+		‣ libblas.so -> libblas.so.3gf
+• pyserial
+	∘ https://garage.maemo.org/projects/pyserial/
+		‣ download, dpkg -i
+• sound + ruby
+	∘ add catalog (http://maemorepo.kaspernj.org ; fremantle ; main)
+	∘ apt-get install  ruby=1.8.7.72-6maemo1 (wie mans auch in apt-cache policy ruby sehen kann)
+	∘ apt-get install ruby-gnome2-all
+
+Starten:
+• gui
+	∘ ./start_dbus_session.py
+	∘ run-standalone.sh python2.5 tiltnroll.py
+• tricksimulator / trick detection
+	∘ python2.5 [tricksimulator.py | simul.py]
+• sound
+	∘ maemo/apps/nixxx/lib $ ruby nixxx.rb

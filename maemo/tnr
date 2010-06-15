@@ -1,0 +1,124 @@
+#!/bin/sh
+
+#
+# tiltnroll - startup and shutdown game and manage services. License: GPLv3.
+#
+
+#set -x
+
+project_dir='/home/user/push/pushitrealgood/maemo';
+dbus_dir="${project_dir}/gui/tiltnroll";
+sound_dir="${project_dir}/apps/nixxx/lib";
+game_dir="${project_dir}/gui/tiltnroll";
+pid_dir="${project_dir}/pids";
+dbus_pid="${pid_dir}/dbus";
+sound_pid="${pid_dir}/sound";
+game_pid="${pid_dir}/game";
+dbus_socket='/tmp/skater_socket';
+dbus_maxtry=30;
+
+set +b
+trap restart_services USR1;
+
+wait_for_comeup() {
+	echo -n "Waiting for ${1} to appear ."
+	trys=0;
+	while [ ! -e ${1} ]; do
+		trys=`expr ${trys} + 1`
+		sleep 1;
+		echo -n "."
+	done
+	echo " [OK]"
+}
+
+wait_for_comedown() {
+	echo -n "Waiting for ${1} to disappear ."
+	trys=0;
+	while [ -e ${1} ]; do
+		trys=`expr ${trys} + 1`
+		sleep 1;
+		echo -n "."
+	done
+	echo " [OK]"
+}
+
+start_dbus() {
+	cd ${dbus_dir} &&
+	dbus-daemon --print-address --config-file=remote.session.dbus.conf &
+	echo -n ${!} > ${dbus_pid};
+	wait_for_comeup ${dbus_socket};
+}
+
+start_sound() {
+	cd ${sound_dir} &&
+	ruby nixxx.rb &
+	echo -n ${!} > ${sound_pid};
+}
+
+start_game() {
+	cd ${game_dir} &&
+	run-standalone.sh python2.5 tiltnroll.py &
+	echo -n ${!} > ${game_pid};
+}
+
+stop_dbus() {
+	kill `cat ${dbus_pid}`;
+	wait_for_comedown ${dbus_socket};
+}
+	
+stop_sound() {
+	kill `cat ${sound_pid}`;
+}
+	
+stop_game() {
+	kill `cat ${game_pid}`;
+}
+	
+start_all() {
+	mkdir ${pid_dir} 2>/dev/null;
+	start_dbus;
+	start_sound;
+	start_game;
+}
+
+stop_all(){
+	stop_game;
+	stop_sound;
+	stop_dbus;
+}
+
+restart_services() {
+	stop_sound;
+	stop_dbus;
+	start_dbus;
+	start_sound;
+}
+
+restart_all() {
+	stop_all;
+	start_all;
+}
+
+print_usage() {
+	echo "Usage: ${0} <start|stop|restart|reload>"
+	echo ""
+}
+
+case ${1} in
+	start)
+		start_all;
+	;;
+	stop)
+		stop_all;
+	;;
+	reload)
+		restart_services;
+	;;
+	restart)
+		restart_all;
+	;;
+	*)
+		print_usage;
+	;;
+esac;
+

@@ -1,0 +1,127 @@
+= Ruby D-Bus -> ffwd
+
+Ruby D-Bus provides an implementation of the D-Bus protocol such that the
+D-Bus system can be used in the Ruby programming language.
+
+You can switch between REXML and Hpricot as XML parsers!
+
+Still a little bumpy with multiple threads, but getting there.
+
+
+This is my personal dev-fork of mvidners upstream.
+
+If you'd like to contrib to this fork, let me know.
+
+Most of my work here is actually for another project: http://github.com/pangdudu/robots/tree/master
+
+Peace.
+
+== Requirements
+
+ * Ruby 1.8 (>= 1.8.6?)
+
+== Installation
+
+  sudo gem install pangdudu-ruby-dbus --source=http://gems.github.com
+
+== Features
+
+Ruby D-Bus currently supports the following features:
+
+ * Connecting to local buses.
+ * Accessing remote services, objects and interfaces.
+ * Invoking methods on remote objects synchronously and asynchronously.
+ * Catch signals on remote objects and handle them via callbacks.
+ * Remote object introspection.
+ * Walking object trees.
+ * Creating services and registering them on the bus.
+ * Exporting objects with interfaces on a bus for remote use.
+ * Rubyish D-Bus object and interface syntax support that automatically
+   allows for introspection.
+ * Emitting signals on exported objects.
+ 
+ * Connection to a local or remote bus over TCP/IP using 'Dbus::RemoteBus.new(socket_name)'
+ * Authentification mechanisms working now: External,CookieSHA1
+
+== Usage
+
+=== Basics:
+
+View a tutorial online on http://trac.luon.net/data/ruby-dbus/tutorial/.
+
+
+=== TCP/Remote stuff:
+
+Take a look at 'config/remote.session.dbus.conf' and start 'config/start_dbus_session.sh'.
+
+You can now try and run one of the tests e.g. 'test/simple_socket_test.rb'.
+
+
+=== Problems you'll have with 'CookieSHA1' when using it remotely: 
+
+Unless we [including you :)] write a funkier SASL authentification mechanism that
+makes sense when using it over-wire, we're stuck with the cookie auth.
+
+Works like this: 
+
+There is a file in '~/.dbus-keyrings' named 'org_freedesktop_general'. 
+It is '-rw-------' so that only you can read it (if you change the permissions, 
+dbus-daemon will most likely ignore the file leaving you with 'External', which is
+even worse remotely). It's kind of a secret key you use to auth against yourself 
+later on.
+
+If you take a look at 'dbus/auth.rb line 40+' you'll see the problem:
+
+  # Search cookie file for id
+  path = File.join(ENV['HOME'], '.dbus-keyrings', context)
+  
+So if you're starting 'config/start_dbus_session.sh' on one host and 'config/start_dbus_session.sh'
+on another one, you'll need to make sure that the content in '~/.dbus-keyrings/org_freedesktop_general'
+is the same on both machines, in order for the 'CookieSHA1' auth to work.
+
+Not cool. I can think of hacks with nfs,smb or fuse:sshfs making it less
+painful to use. 
+
+The file content also get's updated every 5 minutes (when a client fails to auth etc.). 
+Making copy and paste from one shell to another very frolic.
+
+=== Hackish solution from pangdudu/robots/lib/robots_agent.rb
+
+  #because dbus remote auth still betrays us, we need to hack it
+  def get_remote_cookie
+    if @config[:robots_socket_name].include? "tcp:"
+      af, port, daemon_name, daemon_addr = (Socket::getaddrinfo(@config[:daemonhost],@config[:daemonhost].to_i)).first
+      ilog "Trying to get/hack remote cookie from: #{daemon_name}."
+      begin
+        cookiepath = "#{ENV['HOME']}/.dbus-keyrings/org_freedesktop_general"
+        #oki, the scp magic only works, if you use sshkeys
+        `scp #{daemon_addr}:.dbus-keyrings/org_freedesktop_general #{cookiepath}`
+        if File.exist? cookiepath
+          cookie = File.open(cookiepath) 
+          dlog "Got cookie: #{cookie.gets}"
+        end
+      rescue
+        elog "Oops, something is wrong."
+      end
+    else
+      dlog "Nothing to hack, boring."
+    end
+  end
+
+in principle, this is ok. we can now do what we want and it is save to exchange cookies over 
+a ssh session. However I'm still not feeling comfortable doing this. I guess everything else 
+would mean touching the reference C dbus-daemon implementation. 
+
+
+more infos:
+  http://dbus.freedesktop.org/doc/dbus-specification.html#auth-mechanisms
+  http://lists.freedesktop.org/archives/dbus/2007-June/008067.html
+
+Booyaa.
+
+== License
+
+Ruby D-Bus is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License as published by the
+Free Software Foundation; either version 2.1 of the License, or (at
+your option) any later version.
